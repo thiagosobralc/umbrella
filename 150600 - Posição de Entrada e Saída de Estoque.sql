@@ -1,11 +1,16 @@
 
-
+------------------------------------------------------------------
+--- Numero …….: 150600                                         ---
+--- Nome…………….: Posição de estrada e saída de estoque          ---
+--- Autor……………: Thiago Chaves                                  ---
+--- Data…………….: 01/08/2017 (Alterado em: 28/08/2017 )          ---
+------------------------------------------------------------------
 
 SELECT
     ES.IDPRODUTO
     , ES.IDSUBPRODUTO
     , PG.DESCRRESPRODUTO
-    , SUM (QTDCOMPRA) AS QTDCOMPRA
+    , SUM (QTDCOMPRA) AS QTDCOM
     , (
         (SUM (ES.QTDENTRAESTOQUE) - SUM (QTDCOMPRA)) - SUM (QTDDEVVENDA) 
     ) AS QTDOUTRASENTRADAS
@@ -25,7 +30,7 @@ SELECT
 FROM
     (
         SELECT
-            ESTOQUE_SINTETICO.IDPRODUTO
+            ESTOQUE_SINTETICO.IDPROD UTO
             , ESTOQUE_SINTETICO.IDSUBPRODUTO
             , SUM (ESTOQUE_SINTETICO.QTDSALDOINICIAL) AS QTDSALDOINICIAL 
         FROM
